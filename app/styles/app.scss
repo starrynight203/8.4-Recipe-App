@@ -2,6 +2,7 @@
 // Bootstrap Variables
 $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 
+$container-large-desktop: (685px);
 // Import Bootstrap
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
@@ -15,3 +16,163 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 img {
   max-width: 100%;
 }
+
+body {
+	background: #eee !important;
+}
+
+.header {
+  background-color: #ccc;
+}
+
+.headername {
+  text-align: center;
+}
+
+.wrapper {
+	margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+
+  .form-signin-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+		@include box-sizing(border-box);
+
+    &:focus {
+  		  z-index: 2;
+  		}
+  	}
+
+  	input[type="text"] {
+  	  margin-bottom: -1px;
+  	  border-bottom-left-radius: 0;
+  	  border-bottom-right-radius: 0;
+  	}
+
+  	input[type="password"] {
+  	  margin-bottom: 20px;
+  	  border-top-left-radius: 0;
+  	  border-top-right-radius: 0;
+  	}
+  }
+
+.addrecipe {
+  // background-color: #aaa;
+  height: 100px;
+  width: 100px;
+  h3{
+    font-size: 15px;
+    text-align: center;
+    color: #555;
+  }
+}
+
+.plus1 {
+  display: inline-block;
+  background-color: #aaa;
+  height: 100px;
+  width: 100px;
+  margin-left: 40px;
+}
+
+.plus-icon {
+  margin-left: 40%;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #555;
+}
+
+.plus2 {
+  display: inline-block;
+  background-color: #aaa;
+  height: 100px;
+  width: 100px;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.plus-icon2 {
+  margin-left: 40%;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #555;
+}
+
+.plus3 {
+  display: inline-block;
+  background-color: #aaa;
+  height: 100px;
+  width: 100px;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.plus-icon3 {
+  margin-left: 40%;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #555;
+}
+
+
+
+  .servingsarea {
+    border: 1px solid #ddd;
+  }
+
+  .makes {
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 5px;
+  }
+
+  .makesbox {
+    width: 40px;
+    display: inline-block;
+    margin-right: 5px;
+
+  }
+
+  .servings {
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 5px;
+  }
+
+  .us {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+    margin-right: 5px;
+  }
+
+.metric {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: normal;
+  margin-right: 250px;
+}
+
+  .adjustrecipe {
+    font-size: 16px;
+  }
+  
