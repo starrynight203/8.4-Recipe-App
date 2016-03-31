@@ -6,15 +6,20 @@ require('backbone-react-component');
 var recipe = require('../recipeitem.js');
 var models = require('./../models/models');
 var recipeCollection = new models.RecipeCollection(recipe);
-var HomePage = require('./../components/index.jsx');
-console.log(HomePage)
+var HomePage = require('./../components/index.jsx').HomePage;
+var addRecipe = require('./../components/index.jsx').AddRecipeComponent;
+var actualRecipe = require('./../components/index.jsx').ActualrecipeComponent;
+var recipeCardPage = require('./../components/index.jsx').RecipeCardComponent;
+
 // var MenuItemComponent = require('./../components/menu.jsx');
 
 var appContainer = document.getElementById('app');
 var Router = Backbone.Router.extend({
   routes:{
     '':'index',
-    'recipe':'recipecardpage'
+    'addRecipe': 'addRecipe',
+    'actualRecipe': 'actualRecipe',
+    'recipeCardPage':'recipeCardPage'
   },
   index: function(){
     ReactDOM.unmountComponentAtNode(appContainer);
@@ -24,14 +29,30 @@ var Router = Backbone.Router.extend({
       appContainer
     );
   },
-// Use unmount here make global var that you pass in instead of document.getElementById('app')
-  recipecardpage: function(){
+  addRecipe: function(){
     ReactDOM.unmountComponentAtNode(appContainer);
 
     ReactDOM.render(
-      React.createElement(MenuItemComponent,{collection:recipeCollection}),//<<--this isn't right
+      React.createElement(addRecipe),
       appContainer
     );
+  },
+////////// Use unmount here make global var that you pass in instead of document.getElementById('app')
+  actualRecipe: function(){
+    ReactDOM.unmountComponentAtNode(appContainer);
+
+    ReactDOM.render(
+      React.createElement(actualRecipe),
+      appContainer
+    )
+  },
+  recipeCardPage: function(){
+    ReactDOM.unmountComponentAtNode(appContainer);
+
+    ReactDOM.render(
+      React.createElement(recipeCardPage),
+      appContainer
+    )
   }
 });
 

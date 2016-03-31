@@ -35,7 +35,8 @@ $(function(){
       Parse.User
         .logIn($('#email-login').val(), $('#password-login').val(), {
           success: function(user) {
-            console.log(user);
+            console.log('you have logged in');
+            Backbone.history.navigate('addRecipe',{trigger: true});
           },
           error: function(user, error) {
             // The login failed. Check error to see why.
@@ -45,4 +46,5 @@ $(function(){
 
     console.log(Parse.User.current());
 
+    
     });

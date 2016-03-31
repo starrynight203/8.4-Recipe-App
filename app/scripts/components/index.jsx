@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var $ = require('jquery');
 var Backbone = require('backbone');
+var Parse = require('parse');
 
 var HomePage = React.createClass({
   handleClick: function(e){
@@ -13,8 +14,6 @@ var HomePage = React.createClass({
       <div className="row">
         <SignUpComponent/>
         <LoginComponent onClick={this.handleClick}/>
-        <AddRecipeComponent/>
-        <RecipeCardComponent/>
       </div>
     );
   }
@@ -51,24 +50,67 @@ var LoginComponent = React.createClass({
 })
 
 var AddRecipeComponent = React.createClass({
+  handleClick: function(){
+    Backbone.history.navigate('actualRecipe', {trigger: true});
+  },
   render: function(){
     return(
       <div className="addrecipe">
         <div className="row">
-          <ul className="boxes">
-            <li className="col-md-4 plus1">
+          <ul className="boxes" onClick={this.handleClick}>
+            <li className="col-md-12 plus1">
               <i className="fa fa-plus plus-icon"></i>
                 <h3>Add Recipe</h3>
             </li>
-            <li className="col-md-4 plus2">
-              <i className="fa fa-plus plus-icon2"></i>
-                <h3>Add Recipe</h3>
-            </li>
-            <li className="col-md-4 plus3">
-              <i className="fa fa-plus plus-icon3"></i>
-                <h3>Add Recipe</h3>
-            </li>
-        </ul>
+          </ul>
+        </div>
+      </div>
+    );
+  }
+})
+
+var ActualrecipeComponent = React.createClass({
+  handleSubmit: function(e){
+    e.preventDefault();
+    var RecipeInfo = Parse.Object.extend('recipes');
+    var info = new RecipeInfo();
+    var name = $('#name').val();
+    var recipeName = $('#recipename').val();
+    var notes = $('#notes').val();
+    info.set({
+      'name': name,
+      'recipeName': recipeName
+    });
+
+    info.save(null, {
+      success: function(info){
+        console.log(info.id);
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    })
+    Backbone.history.navigate('recipeCardPage', {trigger: true});
+
+  },
+  render: function(){
+    return(
+      <div className="recipeaddform">
+        <div className="row photorow">
+          <div className="col-md-4 addphoto">
+            <i className="fa fa-plus plus-icon-photo"></i>
+              <h3>Add Photo</h3>
+          </div>
+          <div className="col-md-8">
+            <input type="name" id="recipename" className="form-control recipename"  placeholder="Recipe Name"/>
+            <input type="name" id="name" className="form-control" placeholder="By"/>
+          </div>
+        </div>
+        <div className="row textrow">
+          <div className="col-md-12">
+            <textarea id="notes" className="form-control" rows="2" placeholder="Notes..."></textarea>
+            <button onClick={this.handleSubmit} className="btn btn-default adjustrecipe" type="submit">Add Recipe</button>
+          </div>
         </div>
       </div>
     );
@@ -88,6 +130,9 @@ var RecipeCardComponent = React.createClass({
                   <label className="us"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked/>US</label>
                     <label className="metric"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked/>Metric</label>
                       <button className="btn btn-default adjustrecipe" type="submit">Adjust Recipe</button>
+                      <h3>Notes</h3>
+                      <textarea className="form-control" rows="2"></textarea>
+
           </div>
         </div>
       </div>
@@ -95,4 +140,14 @@ var RecipeCardComponent = React.createClass({
   }
 })
 
-module.exports = HomePage;
+// $('.boxes').on('click', function(){
+//   console.log('you clicked a button');
+//   Backbone.history.navigate('recipecardpage', {trigger: true});
+// })
+
+module.exports = {
+  'HomePage': HomePage,
+  'AddRecipeComponent': AddRecipeComponent,
+  'ActualrecipeComponent': ActualrecipeComponent,
+  'RecipeCardComponent': RecipeCardComponent
+}
